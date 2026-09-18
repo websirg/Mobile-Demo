@@ -1,3 +1,25 @@
+
+// Switch between Catalog and Cart on Mobile Devices
+window.switchPOSMobileView = function(view) {
+  const catalogPanel = document.querySelector('.pos-catalog-panel');
+  const cartPanel = document.querySelector('.pos-cart-panel');
+  const btnCatalog = document.getElementById('btn-pos-mview-catalog');
+  const btnCart = document.getElementById('btn-pos-mview-cart');
+
+  if (view === 'catalog') {
+    if (catalogPanel) catalogPanel.style.display = 'flex';
+    if (cartPanel) cartPanel.style.display = 'none';
+    if (btnCatalog) btnCatalog.classList.add('active');
+    if (btnCart) btnCart.classList.remove('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else if (view === 'cart') {
+    if (catalogPanel) catalogPanel.style.display = 'none';
+    if (cartPanel) cartPanel.style.display = 'flex';
+    if (btnCatalog) btnCatalog.classList.remove('active');
+    if (btnCart) btnCart.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+};
 /**
  * Websirg Mobix - POS New Sale Terminal & Invoice Generator
  * Supports Mobiles (IMEI tracked), Accessories, and Other / Manual Items (e.g. Bluetooth, Repairs, Unlisted Items)
@@ -500,6 +522,17 @@ window.selectAccessoryForSale = function(accessoryId) {
 
 // Render Cart Items (Supports Multi-Item Billing: 2-3+ items)
 function renderCart() {
+
+  // Sync Mobile View Bar & Tab Counts
+  const totalQty = cart.reduce((sum, it) => sum + (Number(it.qty) || 1), 0);
+  const totalAmount = cart.reduce((sum, it) => sum + (it.price * it.qty), 0);
+  const mviewCount = document.getElementById('mview-cart-count');
+  if (mviewCount) mviewCount.textContent = totalQty;
+  const mviewBarCount = document.getElementById('mview-cart-bar-count');
+  if (mviewBarCount) mviewBarCount.textContent = totalQty + (totalQty === 1 ? ' item' : ' items');
+  const mviewBarTotal = document.getElementById('mview-cart-bar-total');
+  if (mviewBarTotal) mviewBarTotal.textContent = (typeof Store !== 'undefined' ? Store.formatINR(totalAmount) : '₹' + totalAmount) + ' ➔';
+
   const container = document.getElementById("pos-cart-items-container");
   if (!container) return;
 

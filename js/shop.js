@@ -24,12 +24,33 @@ function initSidebar() {
     }
   });
 
-  // Sidebar mobile toggle
+  // Sidebar mobile toggle with touch backdrop
   const toggleBtn = document.getElementById('shop-sidebar-toggle');
   const sidebar = document.querySelector('.shop-sidebar');
   if (toggleBtn && sidebar) {
-    toggleBtn.addEventListener('click', () => {
+    let backdrop = document.querySelector('.shop-sidebar-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'shop-sidebar-backdrop';
+      document.body.appendChild(backdrop);
+    }
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       sidebar.classList.toggle('active');
+      backdrop.classList.toggle('active', sidebar.classList.contains('active'));
+    });
+    backdrop.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      backdrop.classList.remove('active');
+    });
+    // Close sidebar when clicking any nav link on mobile
+    sidebar.querySelectorAll('.shop-nav-item').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          sidebar.classList.remove('active');
+          backdrop.classList.remove('active');
+        }
+      });
     });
   }
 }

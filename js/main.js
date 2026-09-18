@@ -14,22 +14,28 @@ function initMobileMenu() {
   const toggleBtn = document.querySelector('.nav-toggle');
   const menu = document.querySelector('.nav-menu');
   if (toggleBtn && menu) {
-    toggleBtn.addEventListener('click', () => {
+    if (!menu.querySelector('.nav-item-shop-pos')) {
+      const isShopSubdir = window.location.pathname.includes('/shop/');
+      const posHref = isShopSubdir ? 'login.html' : 'shop/login.html';
+      const posLi = document.createElement('li');
+      posLi.className = 'nav-item-shop-pos';
+      posLi.style.cssText = 'margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed var(--border-color);';
+      posLi.innerHTML = `<a href="${posHref}" class="btn btn-primary btn-sm" style="width:100%; justify-content:center; padding:0.65rem 1rem; border-radius:9999px; font-weight:800; font-size:0.9rem;"><i class="fa-solid fa-cash-register"></i> Open Shop POS & Admin</a>`;
+      menu.appendChild(posLi);
+    }
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       menu.classList.toggle('active');
-      if (menu.classList.contains('active')) {
-        menu.style.display = 'flex';
-        menu.style.flexDirection = 'column';
-        menu.style.position = 'absolute';
-        menu.style.top = '72px';
-        menu.style.left = '0';
-        menu.style.right = '0';
-        menu.style.background = '#FFFFFF';
-        menu.style.padding = '1.5rem';
-        menu.style.borderBottom = '2px solid var(--border-color)';
-        menu.style.boxShadow = 'var(--shadow-xl)';
-      } else {
-        menu.style.display = '';
+    });
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !toggleBtn.contains(e.target)) {
+        menu.classList.remove('active');
       }
+    });
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('active');
+      });
     });
   }
 }

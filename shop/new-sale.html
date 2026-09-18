@@ -98,6 +98,16 @@
   </div>
 
     <div class="shop-content" style="padding:1.25rem;">
+            <!-- Mobile Switcher Tabs -->
+      <div class="pos-mobile-view-tabs">
+        <button type="button" class="pos-mview-btn active" id="btn-pos-mview-catalog" onclick="switchPOSMobileView('catalog')">
+          <i class="fa-solid fa-boxes-stacked"></i> 1. Select Items
+        </button>
+        <button type="button" class="pos-mview-btn" id="btn-pos-mview-cart" onclick="switchPOSMobileView('cart')">
+          <i class="fa-solid fa-cart-shopping"></i> 2. Bill & Cart (<span id="mview-cart-count">0</span>)
+        </button>
+      </div>
+
       <div class="pos-container">
         <!-- Left: Product Catalog Selection -->
         <div class="pos-catalog-panel">
@@ -125,7 +135,10 @@
 
         <!-- Right: Current Sale Cart & Invoice Form -->
         <div class="pos-cart-panel">
-          <div class="pos-header" style="background:#F8FAFC;">
+          <button type="button" class="btn btn-outline btn-sm pos-mobile-back-btn" onclick="switchPOSMobileView('catalog')" style="margin: 0.75rem 0.75rem 0 0.75rem; border-radius: 9999px; font-weight: 700;">
+            <i class="fa-solid fa-arrow-left"></i> ← Back to Product Catalog
+          </button>
+          <div class="pos-header"  style="background:#F8FAFC;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
               <h4 style="margin:0; font-size:1.15rem;"><i class="fa-solid fa-cart-shopping"></i> Sale Items</h4>
               <div style="display:flex; gap:0.4rem; align-items:center;">
