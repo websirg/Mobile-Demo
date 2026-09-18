@@ -109,6 +109,24 @@ button, input, select, textarea {
   padding: 0 1.5rem;
 }
 
+/* Desktop Navigation Spacing & Mobile Item Hiding */
+.nav-item-shop-pos {
+  display: none !important;
+}
+
+.nav-link {
+  white-space: nowrap !important;
+}
+
+.nav-menu {
+  gap: 1.25rem !important;
+}
+
+.form-control, input, select, textarea {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+
 /* ==========================================================================
    Header & Top Announcement Bar
    ========================================================================== */
@@ -1724,7 +1742,7 @@ html, body {
 @media (max-width: 1200px) {
   .container {
     max-width: 100%;
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
   }
   .products-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1733,9 +1751,9 @@ html, body {
 }
 
 /* ==========================================================================
-   Tablets & Small Desktops (max-width: 1024px)
+   Tablets & Laptops (max-width: 1100px) - Hamburger Activates Here
    ========================================================================== */
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .container {
     padding: 0 1.25rem;
   }
@@ -1756,6 +1774,9 @@ html, body {
   .nav-menu.active {
     display: flex !important;
     animation: slideDownNav 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .nav-menu.active .nav-item-shop-pos {
+    display: block !important;
   }
   .nav-toggle {
     display: flex !important;
@@ -1799,6 +1820,10 @@ html, body {
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 1rem !important;
   }
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem !important;
+  }
   .footer-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 2rem !important;
@@ -1827,7 +1852,28 @@ html, body {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 1rem !important;
   }
-  .exchange-box, .store-grid, .product-detail-grid {
+  .exchange-box {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    padding: 1.75rem 1.25rem !important;
+  }
+  .exchange-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .exchange-result-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .store-grid, .product-detail-grid {
     grid-template-columns: 1fr !important;
   }
 }
@@ -2146,6 +2192,51 @@ html, body {
     font-size: 1.05rem !important;
   }
 
+  /* Customer Reviews Grid - 1 FULL WIDTH CARD ON MOBILE (Fix for Image 3) */
+  .reviews-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .review-card {
+    padding: 1.25rem 1rem !important;
+    border-radius: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .review-card p {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Exchange Section - SINGLE COLUMN VERTICAL STACK (Fix for Image 2) */
+  .exchange-box {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 1.25rem 0.85rem !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+  .exchange-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .exchange-result-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 1.5rem 1rem !important;
+    border-radius: 14px !important;
+  }
+  .exchange-val-display {
+    font-size: 2.2rem !important;
+  }
+
   /* Section Title & Subtitle */
   .section {
     padding: 2.5rem 0 !important;
@@ -2178,13 +2269,14 @@ html, body {
     justify-content: center !important;
   }
 
-  /* Forms & Modals (Fix for Image 3) */
+  /* Forms & Modals */
   .form-group {
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 0.35rem !important;
     width: 100% !important;
+    box-sizing: border-box !important;
     margin-bottom: 1rem !important;
   }
   .form-label {
@@ -2221,8 +2313,9 @@ html, body {
   .gallery-main {
     height: 280px !important;
   }
-  .store-info-card, .exchange-box, .contact-form-card, .repair-booking-card {
-    padding: 1.25rem !important;
+  .store-info-card, .contact-form-card, .repair-booking-card {
+    padding: 1.25rem 1rem !important;
+    border-radius: 16px !important;
   }
   #repair-track-form {
     flex-direction: column !important;
@@ -2246,7 +2339,7 @@ html, body {
     justify-content: center !important;
   }
 
-  /* Footer (Fix for Image 2) */
+  /* Footer */
   .site-footer {
     background: var(--dark-bg) !important;
     color: #94A3B8 !important;
