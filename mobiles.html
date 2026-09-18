@@ -124,7 +124,11 @@
       <!-- Main Catalog Grid -->
       <main>
         <div class="catalog-topbar">
-          <div style="font-size:0.9rem; font-weight:600;">
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <button type="button" class="btn btn-outline btn-sm filter-mobile-toggle-btn" onclick="toggleMobileFilter()" style="display:none;">
+              <i class="fa-solid fa-sliders"></i> Filters
+            </button>
+            <div style="font-size:0.9rem; font-weight:600;">
             Showing <span id="filtered-count" style="color:var(--primary);">0</span> Smartphones
           </div>
           <div style="display:flex; align-items:center; gap:0.75rem;">
@@ -340,6 +344,13 @@ function initCatalogFilters(initialQuery) {
   };
 
   render();
+}
+</script>
+
+<script>
+function toggleMobileFilter() {
+  const sidebar = document.getElementById('filter-sidebar');
+  if (sidebar) sidebar.classList.toggle('open');
 }
 </script>
 </body>
