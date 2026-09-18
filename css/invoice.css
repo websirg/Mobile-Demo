@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Websirg Mobix - Professional Tax Invoice Stylesheet & Print Engine
+   ========================================================================== */
+
+.invoice-wrapper {
+  max-width: 820px;
+  margin: 1.5rem auto;
+  background: #FFFFFF;
+  padding: 2.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xl);
+  color: #0F172A;
+  font-family: 'Inter', -apple-system, sans-serif;
+  position: relative;
+}
+
+.invoice-actions-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #0F172A;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+}
+
+.invoice-brand img {
+  height: 46px;
+  margin-bottom: 0.5rem;
+}
+
+.invoice-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.invoice-title {
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #0F172A;
+  margin-bottom: 0.4rem;
+}
+
+.invoice-parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.party-box h5 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+}
+
+.party-box p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.75rem;
+}
+
+.invoice-table th {
+  background: #F1F5F9;
+  border-top: 1px solid #CBD5E1;
+  border-bottom: 1px solid #CBD5E1;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.invoice-table td {
+  padding: 0.85rem 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.875rem;
+  vertical-align: top;
+}
+
+.invoice-breakdown {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.invoice-terms h6 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.invoice-terms p {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.invoice-totals-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-totals-table td {
+  padding: 0.4rem 0;
+  font-size: 0.875rem;
+}
+
+.invoice-totals-table tr.grand-total td {
+  font-size: 1.25rem;
+  font-weight: 800;
+  border-top: 2px solid #0F172A;
+  border-bottom: 2px solid #0F172A;
+  padding: 0.75rem 0;
+  color: #0F172A;
+}
+
+.invoice-signatures {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.sig-box {
+  text-align: center;
+  width: 200px;
+}
+
+.sig-line {
+  border-top: 1px solid #0F172A;
+  padding-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Print Engine: Optimized for Clean A4 Output from Modals & Direct Pages
+   ========================================================================== */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Hide background UI, sidebars, headers, action buttons */
+  .site-header, .site-footer, .shop-sidebar, .shop-topbar,
+  .invoice-actions-bar, .modal-header, .modal-footer,
+  .shop-nav, .wm-toast, .btn, button, nav, aside {
+    display: none !important;
+  }
+
+  /* Flatten modal containers so invoice prints directly */
+  .modal-backdrop {
+    position: static !important;
+    inset: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    visibility: visible !important;
+    backdrop-filter: none !important;
+  }
+
+  .modal-dialog {
+    max-width: 100% !important;
+    max-height: none !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  .modal-body {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #FFFFFF !important;
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
+  .invoice-wrapper {
+    max-width: 100% !important;
+    width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #FFFFFF !important;
+  }
+
+  .shop-main, .shop-content {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #FFFFFF !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+}
+
+@media (max-width: 640px) {
+  .invoice-wrapper {
+    padding: 1.25rem;
+  }
+  .invoice-header, .invoice-parties, .invoice-breakdown {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .invoice-meta, .party-box:last-child {
+    text-align: left;
+  }
+}

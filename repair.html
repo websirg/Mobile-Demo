@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Mobile Repair | Websirg Mobix</title>
+  <meta name="description" content="Book instant doorstep or counter mobile repair. 90-minute turnaround with OEM parts and 90-day warranty.">
+  <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/invoice.css">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <span class="badge-pill-live">Store Open</span>
+        <span><i class="fa-regular fa-clock"></i> <span data-config="openingHours">Mon - Sat: 10:00 AM - 9:30 PM</span></span>
+        <span class="d-none-mobile"><i class="fa-solid fa-location-dot"></i> <span data-config="shortAddress">Main Market, New Delhi</span></span>
+      </div>
+      <div class="top-bar-links">
+        <a href="#" data-config="phone-link"><i class="fa-solid fa-phone"></i> <span data-config="phone">+91 93546 31515</span></a>
+        <a href="#" data-config="whatsapp-link" target="_blank" style="color:#4ADE80;"><i class="fa-brands fa-whatsapp"></i> WhatsApp Store</a>
+        <a href="shop/login.html" class="btn-shop-login" style="padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem; text-decoration:none;"><i class="fa-solid fa-lock"></i> Staff Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+          <img src="images/logo/logo.svg" alt="Websirg Mobix" data-config="logo">
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link ">Home</a></li>
+          <li><a href="mobiles.html" class="nav-link ">Smartphones</a></li>
+          <li><a href="accessories.html" class="nav-link ">Accessories</a></li>
+          <li><a href="repair.html" class="nav-link active">Book Repair</a></li>
+          <li><a href="repair-track.html" class="nav-link ">Track Repair</a></li>
+          <li><a href="exchange.html" class="nav-link ">Exchange</a></li>
+          <li><a href="contact.html" class="nav-link ">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="#" data-config="whatsapp-link" target="_blank" class="btn btn-whatsapp btn-sm">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="shop/login.html" class="btn btn-shop-login btn-sm">
+            <i class="fa-solid fa-store"></i> Shop POS
+          </a>
+          <button class="nav-toggle" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container" style="padding-top:2.5rem; padding-bottom:5rem;">
+    <div style="max-width:760px; margin:0 auto;">
+      <div style="text-align:center; margin-bottom:2.5rem;">
+        <span class="section-badge">Fast & Certified Workshop</span>
+        <h1 style="font-size:2.5rem;">Book Mobile Repair Service</h1>
+        <p style="color:var(--text-muted);">Fill in device details to generate an instant Workshop Job Card ID.</p>
+      </div>
+
+      <div style="background:#FFFFFF; border:1px solid var(--border-color); border-radius:var(--radius-xl); padding:2.5rem; box-shadow:var(--shadow-lg);">
+        <form id="repair-booking-form">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+            <div class="form-group">
+              <label class="form-label">Customer Name *</label>
+              <input type="text" id="rep-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number *</label>
+              <input type="tel" id="rep-phone" class="form-control" placeholder="+91 98112 34567" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+            <div class="form-group">
+              <label class="form-label">Device Brand *</label>
+              <select id="rep-brand" class="form-control" required>
+                <option value="">-- Select Brand --</option>
+                <option value="Apple">Apple iPhone</option>
+                <option value="Samsung">Samsung</option>
+                <option value="OnePlus">OnePlus</option>
+                <option value="Google">Google Pixel</option>
+                <option value="Xiaomi">Xiaomi / Poco</option>
+                <option value="Vivo">Vivo</option>
+                <option value="OPPO">OPPO</option>
+                <option value="Realme">Realme</option>
+                <option value="Nothing">Nothing</option>
+                <option value="Motorola">Motorola</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Device Model *</label>
+              <input type="text" id="rep-model" class="form-control" placeholder="e.g. iPhone 14 Pro / S23 Ultra" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+            <div class="form-group">
+              <label class="form-label">Primary Problem Category *</label>
+              <select id="rep-problem" class="form-control" required>
+                <option value="Screen Replacement">Screen / Glass Shattered</option>
+                <option value="Battery Replacement">Battery Draining / Swollen</option>
+                <option value="Charging Port">Charging Port / No Power</option>
+                <option value="Camera Repair">Camera Blurry / Glass Broken</option>
+                <option value="Speaker & Mic">Speaker / Earpiece Low Sound</option>
+                <option value="Water Damage">Water / Liquid Damage</option>
+                <option value="Software Issue">Software Bootloop / Stuck on Logo</option>
+                <option value="General Diagnosis">General Inspection</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Preferred Date of Visit</label>
+              <input type="date" id="rep-date" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom:2rem;">
+            <label class="form-label">Additional Issue Details</label>
+            <textarea id="rep-details" class="form-control" rows="3" placeholder="Describe when the issue started, touch response, water exposure, etc."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+            <i class="fa-solid fa-file-circle-check"></i> Submit & Generate Job ID
+          </button>
+        </form>
+      </div>
+
+      <!-- Live Tracking Banner -->
+      <div style="text-align:center; margin-top:2.5rem; background:#EFF6FF; border:1px solid #BFDBFE; border-radius:var(--radius-lg); padding:1.5rem;">
+        <h4 style="color:var(--primary); margin-bottom:0.5rem;">Already have a Repair Job Card?</h4>
+        <p style="font-size:0.9rem; color:#475569; margin-bottom:1rem;">Track the status of your phone in our 8-stage repair lifecycle.</p>
+        <a href="repair-track.html" class="btn btn-outline-primary">
+          <i class="fa-solid fa-magnifying-glass"></i> Track Repair Status Online
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo/logo-dark.svg" alt="Websirg Mobix" data-config="darkLogo">
+          <p data-config="tagline">Smartphones • Accessories • Repairs</p>
+          <p style="font-size:0.85rem; color:#94A3B8; margin-bottom:1rem;" data-config="address">
+            Shop No. 14, Main Market, Connaught Place, New Delhi - 110001, India
+          </p>
+          <div style="font-size:0.825rem; color:#64748B;">
+            GSTIN: <strong style="color:#CBD5E1;" data-config="gstNumber">07ABCDE1234F1Z5</strong>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mobiles.html">Latest Mobiles</a></li>
+            <li><a href="accessories.html">Genuine Accessories</a></li>
+            <li><a href="exchange.html">Phone Exchange</a></li>
+            <li><a href="contact.html">Store Locator</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Top Brands</h5>
+          <ul class="footer-links">
+            <li><a href="mobiles.html?brand=Apple">Apple iPhones</a></li>
+            <li><a href="mobiles.html?brand=Samsung">Samsung Galaxy</a></li>
+            <li><a href="mobiles.html?brand=OnePlus">OnePlus Devices</a></li>
+            <li><a href="mobiles.html?brand=Google">Google Pixel</a></li>
+            <li><a href="mobiles.html?brand=Xiaomi">Xiaomi & iQOO</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Repair Services</h5>
+          <ul class="footer-links">
+            <li><a href="repair.html">Book Screen Repair</a></li>
+            <li><a href="repair.html">Battery Replacement</a></li>
+            <li><a href="repair.html">Camera & Glass Fix</a></li>
+            <li><a href="repair-track.html">Track Repair Status</a></li>
+            <li><a href="repair.html">Water Damage Care</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Direct Contact</h5>
+          <ul class="footer-links" style="gap:0.75rem;">
+            <li><a href="#" data-config="phone-link"><i class="fa-solid fa-phone" style="color:var(--primary); width:18px;"></i> <span data-config="phone">+91 93546 31515</span></a></li>
+            <li><a href="#" data-config="whatsapp-link" target="_blank" style="color:#4ADE80;"><i class="fa-brands fa-whatsapp" style="width:18px;"></i> <span data-config="whatsapp">+91 93546 31515</span></a></li>
+            <li><a href="#" data-config="email-link"><i class="fa-regular fa-envelope" style="color:var(--secondary); width:18px;"></i> <span data-config="email">info@websirg.com</span></a></li>
+            <li style="font-size:0.8rem; color:#64748B;"><i class="fa-regular fa-clock" style="width:18px;"></i> <span data-config="openingHours">Mon - Sat: 10:00 AM - 9:30 PM</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-config="copyright">© 2026 Websirg Mobix. All rights reserved.</p>
+        <div style="display:flex; gap:1.5rem; align-items:center;">
+          <span style="color:#64748B;">Phase 1 Client Demo</span>
+          <a href="shop/login.html" style="color:#CBD5E1;"><i class="fa-solid fa-lock"></i> POS Terminal Access</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="config/site-config.js"></script>
+  <script src="config/images.js"></script>
+  <script src="config/products.js"></script>
+  <script src="config/accessories.js"></script>
+  <script src="config/customers.js"></script>
+  <script src="config/repairs.js"></script>
+  <script src="config/invoices.js"></script>
+  <script src="config/suppliers.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/invoice-actions.js"></script>
+
+<script src="js/repair-system.js"></script>
+</body>
+</html>

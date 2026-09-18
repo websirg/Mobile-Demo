@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 60" width="140" height="60" fill="none">
+  <g transform="translate(8, 8)">
+    <rect x="4" y="5" width="34" height="34" rx="9" fill="#FF6900"/>
+    <text x="21" y="29" font-family="Arial, sans-serif" font-weight="900" font-size="17" fill="#FFFFFF" text-anchor="middle">mi</text>
+    <text x="46" y="29" font-family="'Arial Black', Arial, sans-serif" font-weight="900" font-size="16" fill="#0F172A">Xiaomi</text>
+  </g>
+</svg>

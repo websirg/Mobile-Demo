@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | Websirg Mobix</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo/favicon.svg">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/invoice.css">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div style="display:flex; align-items:center; gap:1rem;">
+        <span class="badge-pill-live">Store Open</span>
+        <span><i class="fa-regular fa-clock"></i> <span data-config="openingHours">Mon - Sat: 10:00 AM - 9:30 PM</span></span>
+        <span class="d-none-mobile"><i class="fa-solid fa-location-dot"></i> <span data-config="shortAddress">Main Market, New Delhi</span></span>
+      </div>
+      <div class="top-bar-links">
+        <a href="#" data-config="phone-link"><i class="fa-solid fa-phone"></i> <span data-config="phone">+91 93546 31515</span></a>
+        <a href="#" data-config="whatsapp-link" target="_blank" style="color:#4ADE80;"><i class="fa-brands fa-whatsapp"></i> WhatsApp Store</a>
+        <a href="shop/login.html" class="btn-shop-login" style="padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem; text-decoration:none;"><i class="fa-solid fa-lock"></i> Staff Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+          <img src="images/logo/logo.svg" alt="Websirg Mobix" data-config="logo">
+        </a>
+
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link ">Home</a></li>
+          <li><a href="mobiles.html" class="nav-link active">Smartphones</a></li>
+          <li><a href="accessories.html" class="nav-link ">Accessories</a></li>
+          <li><a href="repair.html" class="nav-link ">Book Repair</a></li>
+          <li><a href="repair-track.html" class="nav-link ">Track Repair</a></li>
+          <li><a href="exchange.html" class="nav-link ">Exchange</a></li>
+          <li><a href="contact.html" class="nav-link ">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="#" data-config="whatsapp-link" target="_blank" class="btn btn-whatsapp btn-sm">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="shop/login.html" class="btn btn-shop-login btn-sm">
+            <i class="fa-solid fa-store"></i> Shop POS
+          </a>
+          <button class="nav-toggle" aria-label="Toggle Navigation">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container" style="padding-top:2rem; padding-bottom:4rem;">
+    <!-- Breadcrumb -->
+    <div style="font-size:0.875rem; color:var(--text-muted); margin-bottom:1.5rem;">
+      <a href="index.html">Home</a> &gt; <a href="mobiles.html">Smartphones</a> &gt; <span id="breadcrumb-product-name">Smartphone</span>
+    </div>
+
+    <!-- Main Detail Grid -->
+    <div class="product-detail-grid">
+      <!-- Gallery Column -->
+      <div>
+        <div class="gallery-main">
+          <img id="detail-main-img" src="" alt="Product Image">
+        </div>
+        <div id="gallery-thumbs-container" class="gallery-thumbs">
+          <!-- Thumbnails injected via JS -->
+        </div>
+      </div>
+
+      <!-- Information Column -->
+      <div>
+        <span id="detail-brand" class="product-card-brand" style="font-size:0.85rem;">Brand</span>
+        <h1 id="detail-title" style="font-size:2.25rem; margin-bottom:0.75rem;">Loading Smartphone...</h1>
+        
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1.5rem;">
+          <span class="badge badge-success" style="font-size:0.85rem;"><i class="fa-solid fa-star"></i> <span id="detail-rating">4.9</span></span>
+          <span style="font-size:0.875rem; color:var(--text-muted);">(<span id="detail-reviews">142</span> Verified Customer Reviews)</span>
+          <span id="detail-stock-badge" class="badge badge-info">In Stock</span>
+        </div>
+
+        <!-- Pricing Card -->
+        <div style="background:#F8FAFC; border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:1.25rem; margin-bottom:1.5rem;">
+          <div style="display:flex; align-items:baseline; gap:0.85rem; margin-bottom:0.5rem;">
+            <span id="detail-offer-price" style="font-size:2.25rem; font-weight:900; font-family:var(--font-heading); color:var(--text-main);">₹0</span>
+            <span id="detail-original-price" style="font-size:1.15rem; text-decoration:line-through; color:var(--text-light);">₹0</span>
+            <span id="detail-discount-badge" class="badge badge-danger">0% OFF</span>
+          </div>
+          <p style="font-size:0.85rem; color:#475569; margin:0;">
+            <i class="fa-solid fa-credit-card" style="color:var(--primary);"></i> <strong>No Cost EMI</strong> starting from ₹3,499/month on all major credit cards.
+          </p>
+        </div>
+
+        <!-- Variant Pickers -->
+        <div style="margin-bottom:1.5rem;">
+          <h5 style="font-size:0.875rem; margin-bottom:0.5rem;">Available Colors:</h5>
+          <div id="detail-colors-list" style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <!-- Colors injected -->
+          </div>
+        </div>
+
+        <div style="margin-bottom:2rem;">
+          <h5 style="font-size:0.875rem; margin-bottom:0.5rem;">Storage Options:</h5>
+          <div id="detail-storage-list" style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <!-- Storage injected -->
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2.5rem;">
+          <button id="btn-enquire-wa" class="btn btn-whatsapp btn-lg" style="flex:1;">
+            <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
+          </button>
+          <a href="#" data-config="phone-link" class="btn btn-primary btn-lg" style="flex:1;">
+            <i class="fa-solid fa-phone"></i> Call Store Desk
+          </a>
+          <a href="exchange.html" class="btn btn-outline btn-lg">
+            <i class="fa-solid fa-arrows-rotate"></i> Exchange Old Phone
+          </a>
+        </div>
+
+        <!-- Highlights & Warranty Box -->
+        <div style="border-top:1px solid var(--border-color); padding-top:1.5rem;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; font-size:0.875rem;">
+            <div><i class="fa-solid fa-shield-check" style="color:var(--primary);"></i> <strong>Warranty:</strong> <span id="detail-warranty">1 Year</span></div>
+            <div><i class="fa-solid fa-receipt" style="color:var(--secondary);"></i> <strong>Invoice:</strong> GST Input Tax Credit Available</div>
+            <div><i class="fa-solid fa-truck-fast" style="color:var(--success);"></i> <strong>Delivery:</strong> Same-Day Store Pickup</div>
+            <div><i class="fa-solid fa-award" style="color:var(--accent);"></i> <strong>Quality:</strong> 100% Brand Sealed Box</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Specifications Table -->
+    <div style="background:#FFFFFF; border:1px solid var(--border-color); border-radius:var(--radius-xl); padding:2.5rem; margin-top:2rem;">
+      <h3 style="font-size:1.5rem; margin-bottom:1.5rem;">Full Technical Specifications</h3>
+      <table class="spec-table">
+        <tbody id="specs-tbody">
+          <!-- Injected via JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/logo/logo-dark.svg" alt="Websirg Mobix" data-config="darkLogo">
+          <p data-config="tagline">Smartphones • Accessories • Repairs</p>
+          <p style="font-size:0.85rem; color:#94A3B8; margin-bottom:1rem;" data-config="address">
+            Shop No. 14, Main Market, Connaught Place, New Delhi - 110001, India
+          </p>
+          <div style="font-size:0.825rem; color:#64748B;">
+            GSTIN: <strong style="color:#CBD5E1;" data-config="gstNumber">07ABCDE1234F1Z5</strong>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mobiles.html">Latest Mobiles</a></li>
+            <li><a href="accessories.html">Genuine Accessories</a></li>
+            <li><a href="exchange.html">Phone Exchange</a></li>
+            <li><a href="contact.html">Store Locator</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Top Brands</h5>
+          <ul class="footer-links">
+            <li><a href="mobiles.html?brand=Apple">Apple iPhones</a></li>
+            <li><a href="mobiles.html?brand=Samsung">Samsung Galaxy</a></li>
+            <li><a href="mobiles.html?brand=OnePlus">OnePlus Devices</a></li>
+            <li><a href="mobiles.html?brand=Google">Google Pixel</a></li>
+            <li><a href="mobiles.html?brand=Xiaomi">Xiaomi & iQOO</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Repair Services</h5>
+          <ul class="footer-links">
+            <li><a href="repair.html">Book Screen Repair</a></li>
+            <li><a href="repair.html">Battery Replacement</a></li>
+            <li><a href="repair.html">Camera & Glass Fix</a></li>
+            <li><a href="repair-track.html">Track Repair Status</a></li>
+            <li><a href="repair.html">Water Damage Care</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Direct Contact</h5>
+          <ul class="footer-links" style="gap:0.75rem;">
+            <li><a href="#" data-config="phone-link"><i class="fa-solid fa-phone" style="color:var(--primary); width:18px;"></i> <span data-config="phone">+91 93546 31515</span></a></li>
+            <li><a href="#" data-config="whatsapp-link" target="_blank" style="color:#4ADE80;"><i class="fa-brands fa-whatsapp" style="width:18px;"></i> <span data-config="whatsapp">+91 93546 31515</span></a></li>
+            <li><a href="#" data-config="email-link"><i class="fa-regular fa-envelope" style="color:var(--secondary); width:18px;"></i> <span data-config="email">info@websirg.com</span></a></li>
+            <li style="font-size:0.8rem; color:#64748B;"><i class="fa-regular fa-clock" style="width:18px;"></i> <span data-config="openingHours">Mon - Sat: 10:00 AM - 9:30 PM</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-config="copyright">© 2026 Websirg Mobix. All rights reserved.</p>
+        <div style="display:flex; gap:1.5rem; align-items:center;">
+          <span style="color:#64748B;">Phase 1 Client Demo</span>
+          <a href="shop/login.html" style="color:#CBD5E1;"><i class="fa-solid fa-lock"></i> POS Terminal Access</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="config/site-config.js"></script>
+  <script src="config/images.js"></script>
+  <script src="config/products.js"></script>
+  <script src="config/accessories.js"></script>
+  <script src="config/customers.js"></script>
+  <script src="config/repairs.js"></script>
+  <script src="config/invoices.js"></script>
+  <script src="config/suppliers.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/invoice-actions.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('id') || 'wm-phone-01';
+  const p = Store.getProductById(productId);
+
+  if (!p) {
+    document.getElementById('detail-title').textContent = 'Product Not Found';
+    return;
+  }
+
+  document.title = `${p.name} | Websirg Mobix`;
+  document.getElementById('breadcrumb-product-name').textContent = p.name;
+  document.getElementById('detail-brand').textContent = p.brand;
+  document.getElementById('detail-title').textContent = p.name;
+  document.getElementById('detail-rating').textContent = p.rating || 4.9;
+  document.getElementById('detail-reviews').textContent = p.reviewsCount || 120;
+  document.getElementById('detail-offer-price').textContent = Store.formatINR(p.offerPrice);
+  document.getElementById('detail-original-price').textContent = Store.formatINR(p.price);
+  document.getElementById('detail-discount-badge').textContent = p.discount;
+  document.getElementById('detail-warranty').textContent = p.warranty;
+
+  const mainImg = document.getElementById('detail-main-img');
+  mainImg.src = p.image;
+  mainImg.onerror = () => { mainImg.src = 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=80'; };
+
+  const galleryThumbs = document.getElementById('gallery-thumbs-container');
+  const images = (p.gallery && p.gallery.length) ? p.gallery : [p.image];
+  galleryThumbs.innerHTML = images.map((imgUrl, idx) => `
+    <div class="gallery-thumb ${idx === 0 ? 'active' : ''}" onclick="switchGalleryImg('${imgUrl}', this)">
+      <img src="${imgUrl}" alt="${p.name}">
+    </div>
+  `).join('');
+
+  const colorsList = document.getElementById('detail-colors-list');
+  colorsList.innerHTML = (p.colors || [p.color]).map((c, i) => `
+    <span class="cat-pill ${i === 0 ? 'active' : ''}">${c}</span>
+  `).join('');
+
+  const storageList = document.getElementById('detail-storage-list');
+  storageList.innerHTML = (p.storageOptions || [p.storage]).map((s, i) => `
+    <span class="cat-pill ${i === 0 ? 'active' : ''}">${s}</span>
+  `).join('');
+
+  const specsTbody = document.getElementById('specs-tbody');
+  const s = p.specs || {};
+  specsTbody.innerHTML = `
+    <tr><th>Display</th><td>${s.display || 'Full HD+ Display'}</td></tr>
+    <tr><th>Processor</th><td>${s.processor || 'High-performance Octa-Core'}</td></tr>
+    <tr><th>Rear Camera</th><td>${s.rearCamera || '50MP Ultra Clear Dual Camera'}</td></tr>
+    <tr><th>Front Camera</th><td>${s.frontCamera || '32MP High Resolution Selfie'}</td></tr>
+    <tr><th>Battery & Charge</th><td>${s.battery || '5000 mAh Fast Charging'}</td></tr>
+    <tr><th>Operating System</th><td>${s.os || 'Latest Android / iOS'}</td></tr>
+    <tr><th>Network & SIM</th><td>${s.network || '5G Dual SIM'}</td></tr>
+    <tr><th>In-Box Contents</th><td>Device, USB-C Cable, SIM Ejector, Quick Start Guide, Warranty Card</td></tr>
+  `;
+
+  document.getElementById('btn-enquire-wa').addEventListener('click', () => {
+    openEnquiryModal(p.name, Store.formatINR(p.offerPrice));
+  });
+
+  window.switchGalleryImg = function(url, el) {
+    mainImg.src = url;
+    document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  };
+});
+</script>
+</body>
+</html>

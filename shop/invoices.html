@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoices History | Websirg Mobix</title>
+  <link rel="icon" type="image/svg+xml" href="../images/logo/favicon.svg">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/shop.css">
+  <link rel="stylesheet" href="../css/invoice.css">
+</head>
+<body class="shop-app">
+
+  <!-- Shop Sidebar -->
+  <aside class="shop-sidebar">
+    <div class="shop-sidebar-brand">
+      <a href="dashboard.html" style="display:flex; align-items:center; text-decoration:none;">
+        <img src="../images/logo/logo-dark.svg" alt="Websirg Mobix" class="dark-logo-target" data-config="darkLogo" style="height:36px;">
+      </a>
+      <a href="../index.html" target="_blank" title="View Customer Website" style="color:#94A3B8; font-size:0.9rem;">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+
+    <div class="shop-nav">
+      <a href="dashboard.html" class="shop-nav-item ">
+        <i class="fa-solid fa-gauge-high"></i> Dashboard
+      </a>
+      <a href="new-sale.html" class="shop-nav-item " style="background:rgba(37,99,235,0.15); color:#60A5FA; border:1px solid rgba(96,165,250,0.3);">
+        <i class="fa-solid fa-cash-register"></i> New Sale (POS)
+      </a>
+      <a href="invoices.html" class="shop-nav-item active">
+        <i class="fa-solid fa-file-invoice-dollar"></i> Bills & Invoices
+      </a>
+      <a href="repairs.html" class="shop-nav-item ">
+        <i class="fa-solid fa-screwdriver-wrench"></i> Repair Workshop
+      </a>
+      <a href="products.html" class="shop-nav-item ">
+        <i class="fa-solid fa-boxes-stacked"></i> Products Inventory
+      </a>
+      <a href="mobiles.html" class="shop-nav-item ">
+        <i class="fa-solid fa-mobile-screen"></i> Mobile Stock & IMEI
+      </a>
+      <a href="accessories.html" class="shop-nav-item ">
+        <i class="fa-solid fa-headphones"></i> Accessories Stock
+      </a>
+      <a href="customers.html" class="shop-nav-item ">
+        <i class="fa-solid fa-users"></i> Customers & Ledger
+      </a>
+      <a href="exchange.html" class="shop-nav-item ">
+        <i class="fa-solid fa-arrows-rotate"></i> Trade-in / Exchange
+      </a>
+      <a href="purchases.html" class="shop-nav-item ">
+        <i class="fa-solid fa-truck-ramp-box"></i> Stock Purchases
+      </a>
+      <a href="suppliers.html" class="shop-nav-item ">
+        <i class="fa-solid fa-handshake"></i> Suppliers
+      </a>
+      <a href="reports.html" class="shop-nav-item ">
+        <i class="fa-solid fa-chart-line"></i> Sales & GST Reports
+      </a>
+      <a href="settings.html" class="shop-nav-item ">
+        <i class="fa-solid fa-gear"></i> Store Settings
+      </a>
+    </div>
+
+    <div class="shop-sidebar-user">
+      <div class="user-avatar">AD</div>
+      <div class="user-info">
+        <h6 id="sidebar-user-name">Shop Admin</h6>
+        <span>admin@websirg.in</span>
+      </div>
+      <button onclick="Store.logout()" title="Logout" style="background:none; border:none; color:#EF4444; cursor:pointer; font-size:1.1rem;">
+        <i class="fa-solid fa-power-off"></i>
+      </button>
+    </div>
+  </aside>
+
+  <div class="shop-main">
+
+  <!-- Topbar -->
+  <div class="shop-topbar">
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <button id="shop-sidebar-toggle" style="background:none; border:none; font-size:1.25rem; color:#475569; cursor:pointer;">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <h3 style="font-size:1.25rem; margin:0;">Tax Invoices History & Billing Register</h3>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <a href="../index.html" target="_blank" class="btn btn-outline btn-sm">
+        <i class="fa-solid fa-globe"></i> View Website
+      </a>
+      <a href="new-sale.html" class="btn btn-primary btn-sm">
+        <i class="fa-solid fa-plus"></i> New Sale
+      </a>
+    </div>
+  </div>
+
+    <div class="shop-content">
+      <div class="card">
+        <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+          <h4 style="margin:0;">Generated Invoices Archive</h4>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <button type="button" class="btn btn-sm btn-pill btn-outline" style="border-color:#F59E0B; color:#D97706; font-weight:800; background:rgba(245,158,11,0.08);" onclick="openQuickManualInvoiceModal()">
+              <i class="fa-solid fa-bolt"></i> + Quick Manual Bill (Any Items)
+            </button>
+            <a href="new-sale.html" class="btn btn-sm btn-pill btn-primary"><i class="fa-solid fa-cash-register"></i> Full POS Terminal</a>
+          </div>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <div class="data-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Invoice No</th>
+                  <th>Date</th>
+                  <th>Customer Name</th>
+                  <th>Contact</th>
+                  <th>Grand Total</th>
+                  <th>Paid</th>
+                  <th>Balance</th>
+                  <th>Payment Mode</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="shop-invoices-tbody">
+                <!-- Rendered by script -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="../config/site-config.js"></script>
+  <script src="../config/images.js"></script>
+  <script src="../config/products.js"></script>
+  <script src="../config/accessories.js"></script>
+  <script src="../config/customers.js"></script>
+  <script src="../config/repairs.js"></script>
+  <script src="../config/invoices.js"></script>
+  <script src="../config/suppliers.js"></script>
+  <script src="../js/store.js"></script>
+  <script src="../js/shop.js"></script>
+  <script src="../js/invoice-actions.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  renderInvoicesTable();
+});
+
+function renderInvoicesTable() {
+  const tbody = document.getElementById('shop-invoices-tbody');
+  const invoices = Store.getInvoices();
+
+  tbody.innerHTML = invoices.map(inv => `
+    <tr>
+      <td><strong>${inv.invoiceNo}</strong></td>
+      <td>${inv.date}</td>
+      <td>${inv.customerName}</td>
+      <td>${inv.customerMobile}</td>
+      <td><strong>${Store.formatINR(inv.grandTotal)}</strong></td>
+      <td>${Store.formatINR(inv.amountPaid)}</td>
+      <td><span style="color:var(--danger); font-weight:600;">${Store.formatINR(inv.balance)}</span></td>
+      <td>${inv.paymentMethod}</td>
+      <td><span class="badge ${inv.status === 'Paid' ? 'badge-success' : 'badge-warning'}">${inv.status}</span></td>
+      <td>
+        <div style="display:flex; gap:0.35rem;">
+          <button class="btn btn-outline btn-sm" onclick="viewInvoiceModal('${inv.invoiceNo}')" title="View & Print">
+            <i class="fa-regular fa-eye"></i>
+          </button>
+          <button class="btn btn-whatsapp btn-sm" onclick="InvoiceActions.openWhatsApp('${inv.invoiceNo}')" title="Send WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </button>
+          <button class="btn btn-outline btn-sm" style="color:var(--danger);" onclick="deleteInvoice('${inv.invoiceNo}')" title="Delete">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+window.deleteInvoice = function(invoiceNo) {
+  if (confirm(`Delete invoice ${invoiceNo}?`)) {
+    const list = Store.getInvoices().filter(i => i.invoiceNo !== invoiceNo);
+    Store.saveInvoices(list);
+    renderInvoicesTable();
+    Store.showToast(`Invoice ${invoiceNo} removed`, 'success');
+  }
+};
+</script>
+
+<!-- Quick Manual Multi-Item Billing Modal Script -->
+<script>
+let manualItems = [
+  { name: "boAt Rockerz 255 Pro+ Bluetooth Neckband", price: 1299, qty: 1, warranty: "1 Year Brand Warranty", imei: "SN-BT9921" },
+  { name: "11D Edge-to-Edge Tempered Glass", price: 199, qty: 1, warranty: "Testing Guarantee", imei: "N/A" }
+];
+
+window.openQuickManualInvoiceModal = function() {
+  let modal = document.getElementById("quick-manual-bill-modal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "quick-manual-bill-modal";
+    modal.className = "modal-backdrop";
+    document.body.appendChild(modal);
+  }
+
+  renderManualBillModalContent();
+  modal.classList.add("active");
+};
+
+function renderManualBillModalContent() {
+  const modal = document.getElementById("quick-manual-bill-modal");
+  if (!modal) return;
+
+  const subtotal = manualItems.reduce((s, i) => s + (Number(i.price) * Number(i.qty)), 0);
+
+  modal.innerHTML = `
+    <div class="modal-dialog" style="max-width:820px;">
+      <div class="modal-header">
+        <div>
+          <h4 style="margin:0; font-size:1.15rem;"><i class="fa-solid fa-receipt" style="color:var(--primary);"></i> Quick Manual Multi-Item Bill Generator</h4>
+          <small style="color:var(--text-muted);">Bill 2-3 or more items instantly (Bluetooth, Phones, Accessories, Repairs)</small>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline btn-close-modal" onclick="closeModal('quick-manual-bill-modal')" style="width:32px; height:32px; padding:0; border-radius:50%; font-size:1.1rem; line-height:1; display:flex; align-items:center; justify-content:center;">✕</button>
+      </div>
+
+      <div class="modal-body" style="padding:1.25rem;">
+        <!-- Customer Details Row -->
+        <div style="display:grid; grid-template-columns:1.2fr 1fr 1.2fr; gap:0.75rem; margin-bottom:1.25rem; background:#F8FAFC; padding:1rem; border-radius:var(--radius-md); border:1px solid var(--border-color);">
+          <div>
+            <label class="form-label" style="font-size:0.8rem; font-weight:700;">Customer Name *</label>
+            <input type="text" id="qbill-cust-name" class="form-control" value="Rohit Sharma" placeholder="e.g. Amit Kumar" style="padding:0.5rem; font-size:0.9rem;">
+          </div>
+          <div>
+            <label class="form-label" style="font-size:0.8rem; font-weight:700;">Mobile Number *</label>
+            <input type="tel" id="qbill-cust-phone" class="form-control" value="+91 98111 22334" placeholder="+91 98..." style="padding:0.5rem; font-size:0.9rem;">
+          </div>
+          <div>
+            <label class="form-label" style="font-size:0.8rem; font-weight:700;">Address / City</label>
+            <input type="text" id="qbill-cust-addr" class="form-control" value="Connaught Place, New Delhi" placeholder="City / Area" style="padding:0.5rem; font-size:0.9rem;">
+          </div>
+        </div>
+
+        <!-- Multi-Item Rows -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+          <h5 style="margin:0; font-size:0.95rem; font-weight:800;"><i class="fa-solid fa-boxes-stacked"></i> Bill Items (${manualItems.length} items)</h5>
+          <button type="button" class="btn btn-sm btn-pill btn-outline" style="font-size:0.8rem; padding:0.25rem 0.75rem;" onclick="addManualItemRow()">
+            <i class="fa-solid fa-plus"></i> + Add Another Item Row
+          </button>
+        </div>
+
+        <div style="border:1px solid var(--border-color); border-radius:var(--radius-md); overflow:hidden; margin-bottom:1.25rem;">
+          <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+            <thead style="background:#F1F5F9; border-bottom:1px solid var(--border-color);">
+              <tr>
+                <th style="padding:0.6rem 0.75rem; text-align:left; width:38%;">Item Name / Description</th>
+                <th style="padding:0.6rem 0.5rem; text-align:left; width:22%;">Serial / Warranty</th>
+                <th style="padding:0.6rem 0.5rem; text-align:center; width:12%;">Qty</th>
+                <th style="padding:0.6rem 0.5rem; text-align:right; width:16%;">Rate (₹)</th>
+                <th style="padding:0.6rem 0.5rem; text-align:center; width:10%;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="qbill-items-tbody">
+              ${manualItems.map((item, idx) => `
+                <tr style="border-bottom:1px solid var(--border-light);">
+                  <td style="padding:0.5rem 0.75rem;">
+                    <input type="text" class="form-control" value="${item.name}" onchange="manualItems[${idx}].name=this.value" placeholder="Item Name" style="padding:0.35rem 0.5rem; font-size:0.85rem; font-weight:600;">
+                  </td>
+                  <td style="padding:0.5rem;">
+                    <input type="text" class="form-control" value="${item.warranty || ''}" onchange="manualItems[${idx}].warranty=this.value" placeholder="Warranty / Serial" style="padding:0.35rem 0.5rem; font-size:0.85rem;">
+                  </td>
+                  <td style="padding:0.5rem; text-align:center;">
+                    <input type="number" min="1" class="form-control" value="${item.qty}" onchange="manualItems[${idx}].qty=Math.max(1, Number(this.value)||1); updateQBillTotals();" style="padding:0.35rem 0.2rem; font-size:0.85rem; text-align:center; font-weight:700;">
+                  </td>
+                  <td style="padding:0.5rem; text-align:right;">
+                    <input type="number" min="0" class="form-control" value="${item.price}" onchange="manualItems[${idx}].price=Number(this.value)||0; updateQBillTotals();" style="padding:0.35rem 0.5rem; font-size:0.85rem; text-align:right; font-weight:700; color:var(--primary);">
+                  </td>
+                  <td style="padding:0.5rem; text-align:center;">
+                    <button type="button" class="btn btn-sm btn-outline" style="color:var(--danger); padding:0.2rem 0.4rem; font-size:0.75rem;" onclick="removeManualItemRow(${idx})" title="Remove Row">✕</button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Discount & Totals Section -->
+        <div style="background:#F8FAFC; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:1rem; display:grid; grid-template-columns:1.2fr 1fr; gap:1.25rem;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+              <label style="font-size:0.8rem; font-weight:700; margin:0;"><i class="fa-solid fa-tag" style="color:var(--danger);"></i> Discount (₹)</label>
+              <div style="display:flex; gap:0.2rem;">
+                <button type="button" class="discount-pill" onclick="setQBillDiscount(50)">-₹50</button>
+                <button type="button" class="discount-pill" onclick="setQBillDiscount(100)">-₹100</button>
+                <button type="button" class="discount-pill" onclick="setQBillDiscount(200)">-₹200</button>
+                <button type="button" class="discount-pill" onclick="setQBillDiscount(500)">-₹500</button>
+              </div>
+            </div>
+            <input type="number" id="qbill-discount" value="0" min="0" class="form-control" oninput="updateQBillTotals()" style="padding:0.45rem; font-size:0.95rem; font-weight:700; color:var(--danger); margin-bottom:0.75rem;">
+
+            <label style="font-size:0.8rem; font-weight:700; display:block; margin-bottom:0.35rem;">Payment Mode</label>
+            <div style="display:flex; gap:0.75rem; font-size:0.8rem;">
+              <label><input type="radio" name="qbill-paymode" value="UPI (GPay/PhonePe)" checked> UPI</label>
+              <label><input type="radio" name="qbill-paymode" value="Cash"> Cash</label>
+              <label><input type="radio" name="qbill-paymode" value="Card"> Card</label>
+            </div>
+          </div>
+
+          <div style="background:#FFFFFF; border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:0.85rem; font-size:0.85rem;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem;">
+              <span>Subtotal:</span>
+              <strong id="qbill-subtotal-val">${Store.formatINR(subtotal)}</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem; color:var(--danger);">
+              <span>Discount:</span>
+              <strong id="qbill-discount-val">-₹0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem; font-size:0.75rem; color:var(--text-muted);">
+              <span>GST Included (18%):</span>
+              <span id="qbill-tax-val">₹0</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; border-top:1px solid var(--border-light); padding-top:0.5rem; font-size:1.15rem; font-weight:800; color:var(--primary);">
+              <span>Grand Total:</span>
+              <span id="qbill-grandtotal-val">${Store.formatINR(subtotal)}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-pill btn-outline" onclick="closeModal('quick-manual-bill-modal')">Cancel</button>
+        <button type="button" class="btn btn-pill btn-primary" onclick="submitQuickManualBill()" style="padding:0.65rem 1.5rem; font-size:0.95rem; font-weight:800; box-shadow:var(--shadow-md);">
+          <i class="fa-solid fa-receipt"></i> Generate & View Tax Bill
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+window.addManualItemRow = function() {
+  manualItems.push({
+    name: "Fast Charger 33W Adapter",
+    price: 699,
+    qty: 1,
+    warranty: "6 Months Warranty",
+    imei: "N/A"
+  });
+  renderManualBillModalContent();
+};
+
+window.removeManualItemRow = function(idx) {
+  if (manualItems.length <= 1) {
+    Store.showToast("Bill must have at least one item!", "danger");
+    return;
+  }
+  manualItems.splice(idx, 1);
+  renderManualBillModalContent();
+};
+
+window.setQBillDiscount = function(amt) {
+  const dInput = document.getElementById("qbill-discount");
+  if (dInput) {
+    dInput.value = amt;
+    updateQBillTotals();
+  }
+};
+
+window.updateQBillTotals = function() {
+  const subtotal = manualItems.reduce((s, i) => s + (Number(i.price) * Number(i.qty)), 0);
+  const dInput = document.getElementById("qbill-discount");
+  const discount = dInput ? (Number(dInput.value) || 0) : 0;
+  const grandTotal = Math.max(0, subtotal - discount);
+  const taxable = Math.round((grandTotal / 1.18) * 100) / 100;
+  const tax = Math.round((grandTotal - taxable) * 100) / 100;
+
+  if (document.getElementById("qbill-subtotal-val")) document.getElementById("qbill-subtotal-val").textContent = Store.formatINR(subtotal);
+  if (document.getElementById("qbill-discount-val")) document.getElementById("qbill-discount-val").textContent = discount > 0 ? `-${Store.formatINR(discount)}` : "₹0";
+  if (document.getElementById("qbill-tax-val")) document.getElementById("qbill-tax-val").textContent = Store.formatINR(tax);
+  if (document.getElementById("qbill-grandtotal-val")) document.getElementById("qbill-grandtotal-val").textContent = Store.formatINR(grandTotal);
+};
+
+window.submitQuickManualBill = function() {
+  const name = document.getElementById("qbill-cust-name")?.value.trim() || "Retail Walk-in Customer";
+  const phone = document.getElementById("qbill-cust-phone")?.value.trim() || "+91 98111 00000";
+  const addr = document.getElementById("qbill-cust-addr")?.value.trim() || "New Delhi";
+
+  const subtotal = manualItems.reduce((s, i) => s + (Number(i.price) * Number(i.qty)), 0);
+  const dInput = document.getElementById("qbill-discount");
+  const discount = dInput ? (Number(dInput.value) || 0) : 0;
+  const grandTotal = Math.max(0, subtotal - discount);
+  const taxable = Math.round((grandTotal / 1.18) * 100) / 100;
+  const tax = Math.round((grandTotal - taxable) * 100) / 100;
+  const cgst = Math.round((tax / 2) * 100) / 100;
+  const sgst = Math.round((tax / 2) * 100) / 100;
+
+  const payMode = document.querySelector('input[name="qbill-paymode"]:checked')?.value || "UPI";
+  const invoiceNo = Store.getNextInvoiceNumber();
+
+  const newInvoice = {
+    invoiceNo: invoiceNo,
+    date: new Date().toISOString().split("T")[0],
+    customerName: name,
+    customerMobile: phone,
+    customerAddress: addr,
+    items: manualItems.map(i => ({
+      name: i.name,
+      imei: i.imei || "CUSTOM-ITEM",
+      qty: Number(i.qty) || 1,
+      price: Number(i.price) || 0,
+      discount: 0,
+      taxable: Math.round(((Number(i.price) * Number(i.qty)) / 1.18) * 100) / 100,
+      taxRate: 18,
+      total: Number(i.price) * Number(i.qty),
+      warranty: i.warranty || "Standard"
+    })),
+    subtotal: subtotal,
+    discount: discount,
+    taxableAmount: taxable,
+    cgst: cgst,
+    sgst: sgst,
+    grandTotal: grandTotal,
+    paymentMethod: payMode,
+    amountPaid: grandTotal,
+    balance: 0,
+    status: "Paid"
+  };
+
+  Store.addInvoice(newInvoice);
+  closeModal("quick-manual-bill-modal");
+  renderInvoicesTable();
+
+  Store.showToast(`Invoice ${invoiceNo} generated for ${newInvoice.items.length} items!`, "success");
+
+  setTimeout(() => {
+    if (typeof viewInvoiceModal === "function") {
+      viewInvoiceModal(invoiceNo);
+    }
+  }, 300);
+};
+</script>
+</body>
+</html>

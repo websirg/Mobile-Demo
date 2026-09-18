@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" width="280" height="60" fill="none">
+  <defs>
+    <linearGradient id="wmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="phoneBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2563EB" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <g transform="translate(8, 6)">
+    <rect x="0" y="0" width="34" height="48" rx="8" fill="url(#phoneBody)" filter="url(#glow)"/>
+    <rect x="11" y="3" width="12" height="2" rx="1" fill="#64748B"/>
+    <rect x="2.5" y="7" width="29" height="37" rx="4" fill="#0B132B"/>
+    <path d="M7 16 L12 34 L17 22 L22 34 L27 16" stroke="url(#wmGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="17" cy="15" r="2" fill="#06B6D4"/>
+  </g>
+  <text x="54" y="33" font-family="'Outfit', 'Inter', system-ui, sans-serif" font-weight="800" font-size="24" fill="#0F172A" letter-spacing="-0.5">Websirg</text>
+  <text x="148" y="33" font-family="'Outfit', 'Inter', system-ui, sans-serif" font-weight="800" font-size="24" fill="#2563EB" letter-spacing="-0.5">Mobix</text>
+  <text x="55" y="47" font-family="'Inter', system-ui, sans-serif" font-weight="600" font-size="7.5" fill="#64748B" letter-spacing="1.5">SMARTPHONES • ACCESSORIES • REPAIRS</text>
+</svg>

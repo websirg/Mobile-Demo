@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Login | Websirg Mobix POS</title>
+  <link rel="icon" type="image/svg+xml" href="../images/logo/favicon.svg">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/shop.css">
+</head>
+<body style="background:radial-gradient(circle at 50% 30%, #1E293B 0%, #0B1220 70%, #050914 100%); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:1.5rem;">
+
+  <div style="background:#FFFFFF; border-radius:var(--radius-xl); padding:3rem 2.5rem; max-width:440px; width:100%; box-shadow:var(--shadow-xl); border:1px solid rgba(255,255,255,0.1);">
+    <div style="text-align:center; margin-bottom:2rem;">
+      <img src="../images/logo/logo.svg" alt="Websirg Mobix" data-config="logo" style="height:48px; margin:0 auto 1rem;">
+      <h3 style="font-size:1.5rem; color:#0F172A; margin-bottom:0.25rem;">Shop Management POS</h3>
+      <p style="color:var(--text-muted); font-size:0.875rem;">Enter authorized staff credentials to continue</p>
+    </div>
+
+    <!-- Quick Demo Credential Fill Banner -->
+    <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:var(--radius-md); padding:0.85rem; margin-bottom:1.5rem; font-size:0.825rem; color:#1E40AF; display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <strong>Demo Login:</strong><br>
+        Email: admin@websirg.in<br>
+        Pass: 123456
+      </div>
+      <button type="button" class="btn btn-primary btn-sm" onclick="fillDemoCredentials()">Auto Fill</button>
+    </div>
+
+    <form id="shop-login-form">
+      <div class="form-group" style="margin-bottom:1.25rem;">
+        <label class="form-label">Email or Mobile Number</label>
+        <input type="text" id="login-email" class="form-control" placeholder="admin@websirg.in" required>
+      </div>
+
+      <div class="form-group" style="margin-bottom:1.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <label class="form-label">Password</label>
+          <a href="#" onclick="alert('Demo password is: 123456')" style="font-size:0.8rem;">Forgot?</a>
+        </div>
+        <input type="password" id="login-password" class="form-control" placeholder="••••••" required>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem; font-size:0.85rem; color:#475569;">
+        <input type="checkbox" id="remember-me" checked>
+        <label for="remember-me">Remember me on this terminal</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+        <i class="fa-solid fa-right-to-bracket"></i> Login to Terminal
+      </button>
+    </form>
+
+    <div style="text-align:center; margin-top:1.75rem; padding-top:1.5rem; border-top:1px solid var(--border-light); font-size:0.85rem;">
+      <a href="../index.html" style="color:var(--text-muted);">
+        <i class="fa-solid fa-arrow-left"></i> Return to Customer Website
+      </a>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="../config/site-config.js"></script>
+  <script src="../config/products.js"></script>
+  <script src="../config/accessories.js"></script>
+  <script src="../config/customers.js"></script>
+  <script src="../config/repairs.js"></script>
+  <script src="../config/invoices.js"></script>
+  <script src="../config/suppliers.js"></script>
+  <script src="../js/store.js"></script>
+  <script>
+    function fillDemoCredentials() {
+      document.getElementById('login-email').value = 'admin@websirg.in';
+      document.getElementById('login-password').value = '123456';
+    }
+
+    document.getElementById('shop-login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const pass = document.getElementById('login-password').value.trim();
+      const res = Store.login(email, pass);
+      if (res.success) {
+        Store.showToast('Login successful! Redirecting...', 'success');
+        setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
+      } else {
+        alert(res.message);
+      }
+    });
+  </script>
+</body>
+</html>
