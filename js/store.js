@@ -32,6 +32,13 @@ const Store = {
     if (!localStorage.getItem('wm_site_config')) {
       localStorage.setItem('wm_site_config', JSON.stringify(typeof DEFAULT_SITE_CONFIG !== 'undefined' ? DEFAULT_SITE_CONFIG : {}));
     }
+    if (typeof window !== 'undefined') {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => this.renderShopInfo());
+      } else {
+        this.renderShopInfo();
+      }
+    }
   },
 
   // Products
@@ -143,18 +150,110 @@ const Store = {
       return JSON.parse(localStorage.getItem('wm_auth'));
     } catch(e) { return null; }
   },
-  login(email, password) {
-    if (email === 'admin@websirg.in' && password === '123456') {
-      const auth = {
-        name: 'Shop Owner',
-        email: email,
-        role: 'Administrator',
-        loginTime: new Date().toISOString()
-      };
-      localStorage.setItem('wm_auth', JSON.stringify(auth));
-      return { success: true, user: auth };
+  getShop() {
+    try {
+      return JSON.parse(localStorage.getItem('wm_shop'));
+    } catch(e) { return null; }
+  },
+
+  async login(emailOrUserId, password) {
+    try {
+      const apiUrl = (typeof window !== 'undefined' && window.API_BASE_URL) || 'http://127.0.0.1:8000/api';
+      const response = await fetch(`${apiUrl}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({ email: emailOrUserId, password: password })
+      });
+
+      const res = await response.json();
+
+      if (res.success && res.data) {
+        const auth = {
+          name: res.data.user.name,
+          email: res.data.user.email,
+          userId: res.data.user.user_id,
+          role: res.data.user.role,
+          token: res.data.token,
+          shop: res.data.shop,
+          loginTime: new Date().toISOString()
+        };
+        localStorage.setItem('wm_auth', JSON.stringify(auth));
+        if (res.data.shop) {
+          localStorage.setItem('wm_shop', JSON.stringify(res.data.shop));
+          // Synchronize business name reactively across portal
+          const siteConf = this.getSiteConfig ? this.getSiteConfig() : {};
+          if (siteConf) {
+            siteConf.siteName = res.data.shop.name;
+            siteConf.shortName = res.data.shop.name;
+            if (res.data.shop.address) siteConf.shortAddress = res.data.shop.address;
+            if (res.data.shop.contact_phone) siteConf.phone = res.data.shop.contact_phone;
+            localStorage.setItem('wm_site_config', JSON.stringify(siteConf));
+          }
+        }
+        return { success: true, user: auth };
+      } else {
+        // Fallback for offline demo credentials
+        if (emailOrUserId === 'admin@websirg.in' && password === '123456') {
+          const auth = {
+            name: 'Shop Owner',
+            email: emailOrUserId,
+            role: 'Administrator',
+            loginTime: new Date().toISOString()
+          };
+          localStorage.setItem('wm_auth', JSON.stringify(auth));
+          return { success: true, user: auth };
+        }
+        return { success: false, message: res.message || 'Invalid credentials.' };
+      }
+    } catch (err) {
+      // Offline fallback
+      if (emailOrUserId === 'admin@websirg.in' && password === '123456') {
+        const auth = {
+          name: 'Shop Owner',
+          email: emailOrUserId,
+          role: 'Administrator',
+          loginTime: new Date().toISOString()
+        };
+        localStorage.setItem('wm_auth', JSON.stringify(auth));
+        return { success: true, user: auth };
+      }
+      return { success: false, message: 'Could not reach Super Admin backend at http://127.0.0.1:8000.' };
     }
-    return { success: false, message: 'Invalid credentials. Use admin@websirg.in / 123456' };
+  },
+
+  renderShopInfo() {
+    const auth = this.getAuth();
+    const shop = this.getShop();
+    if (!auth) return;
+
+    // Sidebar user / shop identity
+    const userNameEl = document.getElementById('sidebar-user-name');
+    if (userNameEl) {
+      userNameEl.textContent = auth.name || 'Shop Admin';
+      if (auth.userId) {
+        userNameEl.title = `User ID: ${auth.userId}`;
+      }
+    }
+
+    const userEmailEl = document.querySelector('.shop-sidebar-user .user-info span');
+    if (userEmailEl) {
+      userEmailEl.textContent = (shop && shop.name) ? `${shop.name} (${shop.shop_number})` : (auth.email || 'admin@websirg.in');
+    }
+
+    const userAvatarEl = document.querySelector('.shop-sidebar-user .user-avatar');
+    if (userAvatarEl && auth.name) {
+      const initials = auth.name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+      userAvatarEl.textContent = initials || 'SA';
+    }
+
+    // Topbar brand / shop indicator
+    const topbarHeading = document.querySelector('.shop-topbar h3');
+    if (topbarHeading && shop) {
+      topbarHeading.innerHTML = `<span style="color:#2563EB; font-weight:700;">${shop.name}</span> <span style="font-size:0.75rem; background:#EFF6FF; color:#1E40AF; border:1px solid #BFDBFE; padding:2px 8px; border-radius:12px; margin-left:8px;">${shop.shop_number}</span>`;
+    }
   },
   logout() {
     localStorage.removeItem('wm_auth');

@@ -17,14 +17,16 @@
       <p style="color:var(--text-muted); font-size:0.875rem;">Enter authorized staff credentials to continue</p>
     </div>
 
-    <!-- Quick Demo Credential Fill Banner -->
-    <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:var(--radius-md); padding:0.85rem; margin-bottom:1.5rem; font-size:0.825rem; color:#1E40AF; display:flex; justify-content:space-between; align-items:center;">
-      <div>
-        <strong>Demo Login:</strong><br>
-        Email: admin@websirg.in<br>
-        Pass: 123456
+    <!-- Quick SaaS Store Credential Fill Banner -->
+    <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:var(--radius-md); padding:0.85rem; margin-bottom:1.5rem; font-size:0.825rem; color:#1E40AF;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <strong>Live SaaS Store Login:</strong>
+        <button type="button" class="btn btn-primary btn-sm" onclick="fillLiveCredentials()">Auto Fill</button>
       </div>
-      <button type="button" class="btn btn-primary btn-sm" onclick="fillDemoCredentials()">Auto Fill</button>
+      <div>
+        User ID: <code>ram515</code> &bull; Pass: <code>Ram@12345</code><br>
+        <span style="font-size:0.75rem; color:#3B82F6;">Connected to Super Admin Backend &bull; <strong>Ram Mobile House</strong> (WS/SH/006)</span>
+      </div>
     </div>
 
     <form id="shop-login-form">
@@ -68,21 +70,41 @@
   <script src="../config/suppliers.js"></script>
   <script src="../js/store.js"></script>
   <script>
+    function fillLiveCredentials() {
+      document.getElementById('login-email').value = 'ram515';
+      document.getElementById('login-password').value = 'Ram@12345';
+    }
+
     function fillDemoCredentials() {
       document.getElementById('login-email').value = 'admin@websirg.in';
       document.getElementById('login-password').value = '123456';
     }
 
-    document.getElementById('shop-login-form').addEventListener('submit', (e) => {
+    document.getElementById('shop-login-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('login-email').value.trim();
       const pass = document.getElementById('login-password').value.trim();
-      const res = Store.login(email, pass);
-      if (res.success) {
-        Store.showToast('Login successful! Redirecting...', 'success');
-        setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
-      } else {
-        alert(res.message);
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating with Super Admin...';
+      }
+      try {
+        const res = await Store.login(email, pass);
+        if (res.success) {
+          const shopName = (res.user.shop && res.user.shop.name) ? res.user.shop.name : res.user.name;
+          Store.showToast('Login successful! Welcome to ' + shopName, 'success');
+          setTimeout(() => { window.location.href = 'dashboard.html'; }, 600);
+        } else {
+          alert(res.message);
+        }
+      } catch(err) {
+        alert('Login error: ' + err.message);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Login to Terminal';
+        }
       }
     });
   </script>
